@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property Carbon|string $created_at
  * @property Carbon|string $updated_at
  * @property Carbon|string $deleted_at
+ *
+ * @property Post $post
+ * @property Category $category
  */
 class CategoryPost extends Pivot
 {

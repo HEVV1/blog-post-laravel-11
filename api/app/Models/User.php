@@ -7,6 +7,7 @@ use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Carbon;
 use App\Repository\UserRepository;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -22,6 +23,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property Carbon|string $updated_at
  * @property Carbon|string $deleted_at
  * @property Carbon|string $email_verified_at
+ *
+ * @property Post[] $posts
+ * @property Comment[] $comments
  *
  * @method static UserRepository repository
  */
@@ -82,5 +86,18 @@ class User extends Authenticatable
             $model->uuid = Uuid::uuid4()
                 ->toString();
         });
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'user_id', 'id');
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
     }
 }

@@ -22,7 +22,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  *
  * @property int $user_id
  *
- * @property-read User $user
+ * @property User $user
+ * @property Category[] $categories
  *
  * @method static PostRepository repository()
  */

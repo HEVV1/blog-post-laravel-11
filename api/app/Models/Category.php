@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property Carbon|string $created_at
  * @property Carbon|string $updated_at
  * @property Carbon|string $deleted_at
+ *
+ * @property Post[] $posts
  */
 class Category extends Model
 {
