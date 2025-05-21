@@ -3,14 +3,27 @@
 namespace App\Models;
 
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
+ * @property int $id
+ * @property string $uuid
+ * @property string $title
  *
+ * @property int $category_id
+ * @property int $post_id
+ *
+ * @property Carbon|string $created_at
+ * @property Carbon|string $updated_at
+ * @property Carbon|string $deleted_at
  */
 class CategoryPost extends Pivot
 {
+    use HasFactory;
+
     protected $table = 'table_category_post';
 
     protected $fillable = [

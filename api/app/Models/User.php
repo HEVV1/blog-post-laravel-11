@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Carbon;
+use App\Repository\UserRepository;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +23,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property Carbon|string $deleted_at
  * @property Carbon|string $email_verified_at
  *
+ * @method static UserRepository repository
  */
 class User extends Authenticatable
 {
@@ -59,6 +61,8 @@ class User extends Authenticatable
             'deleted_at' => 'datetime',
         ];
     }
+
+    public static string $repositoryClass = UserRepository::class;
 
     /**
      * @return string

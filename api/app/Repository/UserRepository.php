@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
-class UserRepository
+use App\Repository\Interfaces\AbstractRepository;
+
+class UserRepository extends AbstractRepository
 {
 
 }

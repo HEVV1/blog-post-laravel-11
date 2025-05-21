@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('table_post', static function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid();
             $table->string('title');
             $table->text('content')->nullable();
             $table->foreignId('user_id')->constrained('table_user')->onDelete('cascade');

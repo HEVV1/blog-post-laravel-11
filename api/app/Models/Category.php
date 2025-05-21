@@ -6,6 +6,8 @@ use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id
@@ -18,6 +20,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Category extends Model
 {
+    use HasFactory;
+
     protected $table = 'table_category';
 
     protected $fillable = [
@@ -27,7 +31,7 @@ class Category extends Model
     /**
      * @return array<string, string>
      */
-    protected static function casts(): array
+    protected function casts(): array
     {
         return [
             'created_at' => 'datetime',
@@ -57,10 +61,11 @@ class Category extends Model
     }
 
     /**
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function post(): HasMany
+    public function posts(): BelongsToMany
     {
-        return $this->hasMany(Post::class, 'category_id', 'id');
+        return $this->belongsToMany(Post::class, 'table_category_post', 'category_id', 'post_id')
+            ->withTimestamps();
     }
 }

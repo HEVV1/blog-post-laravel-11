@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 use App\Repository\PostRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -27,6 +28,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Post extends Model
 {
+    use HasFactory;
+
     protected $table = 'table_post';
 
     protected $fillable = [
@@ -78,9 +81,9 @@ class Post extends Model
     /**
      * @return BelongsToMany
      */
-    public function category(): BelongsToMany
+    public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class, 'category_post', 'post_id', 'category_id')
+        return $this->belongsToMany(Category::class, 'table_category_post', 'post_id', 'category_id')
             ->withTimestamps();
     }
 }

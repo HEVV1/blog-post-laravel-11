@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('table_comment', static function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid();
             $table->string('content');
             $table->timestamps();
             $table->softDeletes();
