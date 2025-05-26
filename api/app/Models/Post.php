@@ -5,6 +5,7 @@ namespace App\Models;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Carbon;
 use App\Repository\PostRepository;
+use App\Traits\HasRepositoryTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,6 +31,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Post extends Model
 {
     use HasFactory;
+    use HasRepositoryTrait;
+
+    protected static string $repositoryClass = PostRepository::class;
 
     protected $table = 'table_post';
 
