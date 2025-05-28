@@ -9,11 +9,6 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PostController extends Controller
 {
-    public function __construct()
-    {
-
-    }
-
     /**
      * @return AnonymousResourceCollection
      */

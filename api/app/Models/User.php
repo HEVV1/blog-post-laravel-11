@@ -6,6 +6,8 @@ namespace App\Models;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Carbon;
 use App\Repository\UserRepository;
+use App\Traits\HasRepositoryTrait;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -29,9 +31,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  * @method static UserRepository repository
  */
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
+    use HasRepositoryTrait;
 
     protected $table = 'table_user';
 
@@ -66,7 +70,17 @@ class User extends Authenticatable
         ];
     }
 
-    public static string $repositoryClass = UserRepository::class;
+    protected static string $repositoryClass = UserRepository::class;
+
+    public function getJWTIdentifier(): string
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims(): array
+    {
+        return [];
+    }
 
     /**
      * @return string
